@@ -36,6 +36,8 @@
 {{-- footer starts here --}}
 @include('layouts.footer')
 
+
+
 {{-- <div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">
   <div class="uk-offcanvas-bar">
     <a class="uk-logo" href="index-2.html">Sprin</a>

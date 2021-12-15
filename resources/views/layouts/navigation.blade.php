@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="uk-navbar-item">
-            <div><a class="uk-button uk-button-primary-light" href="#!">Sign Up</a></div>
+            <div><a class="uk-button uk-button-primary-light" href="/userLogin">Sign Up</a></div>
           </div>          
           <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-toggle><span
             data-uk-navbar-toggle-icon></span></a>
