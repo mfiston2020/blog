@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoriesController;
 use Illuminate\Support\Facades\Route;
+
+use function GuzzleHttp\Promise\all;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +27,5 @@ Route::get('/home',function(){
 Route::get('/admin',function(){
     return view('admin.dashboard');
 })->middleware('auth');
+
+Route::get('/admin/category',[CategoriesController::class,'index'])->name('admin.category')->middleware('auth');
