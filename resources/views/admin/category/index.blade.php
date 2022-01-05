@@ -19,6 +19,16 @@
 <div class="section-body">
     <div class="container-fluid">
         
+        @if (session('successMessage'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{session('successMessage')}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+
         <div class="row clearfix">
             <div class="col-md-8 col-sm-12">
                 <div class="card">
@@ -73,18 +83,24 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="{{ route('admin.category.store')}}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label>Company Name <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" value="">
+                                        <label>Category Name <span class="text-danger">*</span></label>
+                                        <input class="form-control @error('category_name') is-invalid @enderror" name="category_name" type="text" 
+                                                value="{{ old('category_name')}}">
+
+                                        @error('category_name')
+                                            <span>{{$message}}</span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 text-right m-t-20">
-                                    <button type="button" class="btn btn-primary">SAVE</button>
+                                    <button type="submit" class="btn btn-primary">SAVE</button>
                                 </div>
                             </div>
                         </form>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogsController;
 use App\Http\Controllers\Admin\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +25,13 @@ Route::get('/home',function(){
     return redirect('/admin');
 });
 
-Route::get('/admin',function(){
-    return view('admin.dashboard');
-})->middleware('auth');
+Route::prefix('/admin')->middleware('auth')->name('admin.')->group(function(){
+    
+    Route::get('/',function(){return view('admin.dashboard');});
 
-Route::get('/admin/category',[CategoriesController::class,'index'])->name('admin.category')->middleware('auth');
-Route::get('/admin/blog',[CategoriesController::class,'index'])->name('admin.blog')->middleware('auth');
+    Route::get('/category',[CategoriesController::class,'index'])->name('category');
+    Route::post('/category',[CategoriesController::class,'store'])->name('category.store');
+
+    Route::get('/blog',[BlogsController::class,'index'])->name('blog');
+
+});
