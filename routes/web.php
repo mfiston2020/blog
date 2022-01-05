@@ -29,3 +29,4 @@ Route::get('/admin',function(){
 })->middleware('auth');
 
 Route::get('/admin/category',[CategoriesController::class,'index'])->name('admin.category')->middleware('auth');
+Route::get('/admin/blog',[CategoriesController::class,'index'])->name('admin.blog')->middleware('auth');

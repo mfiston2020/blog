@@ -174,6 +174,10 @@
             <li class="{{ Request::is('admin')?'active':''}}">
                 <a href="/admin"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
             </li>
+            <li class="{{Request::is('admin/blog')?'active':''}}">
+                <a href="{{route('admin.blog')}}">
+                    <i class="fa fa-layer-group"></i><span>Blog</span></a>
+            </li>
             <li class="{{Request::is('admin/category')?'active':''}}">
                 <a href="{{route('admin.category')}}">
                     <i class="fa fa-layer-group"></i><span>Categories</span></a>
