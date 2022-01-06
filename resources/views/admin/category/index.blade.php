@@ -50,11 +50,12 @@
                                         <th class="w30">&nbsp;</th>
                                         <th>#</th>
                                         <th>Name</th>
+                                        <th>Blogs</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($categories as $category)
+                                    @foreach ($categories as $key=> $category)
                                         <tr>
                                             <td>
                                                 <label class="custom-control custom-checkbox">
@@ -62,8 +63,16 @@
                                                     <span class="custom-control-label">&nbsp;</span>
                                                 </label>
                                             </td>
-                                            <td><a href="#">ASD-4569</a></td>
-                                            <td>{{$categories}}</td>
+                                            <td>{{$key+1}}</td>
+                                            <td><a href="#">{{$category->name}}</a></td>
+                                            <td>
+                                                {{count(\App\Models\Blog::where('category_id',$category->id)->select('*')->get())}}
+                                                {{-- {{\App\Models\Blog::where('category_id',$category->id)->pluck('id')->first()}} --}}
+                                            </td>
+                                            <td class="float-right">
+                                                <a href="">edit</a>
+                                                <a href="" class="ml-3 text-danger">delete</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -86,17 +95,11 @@
                         <form action="{{ route('admin.category.store')}}" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label>Category Name <span class="text-danger">*</span></label>
-                                        <input class="form-control @error('category_name') is-invalid @enderror" name="category_name" type="text" 
-                                                value="{{ old('category_name')}}">
+                                
+                                <x-inputs.text name="category_name" value="{{ old('category_name')}}" inputname="category_name" labelName="Category Name"/>
 
-                                        @error('category_name')
-                                            <span>{{$message}}</span>
-                                        @enderror
-                                    </div>
-                                </div>
+                                {{-- <x-inputs.text name="testing_name" value="{{ old('category_name')}}" inputname="testing_name"/> --}}
+
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 text-right m-t-20">
